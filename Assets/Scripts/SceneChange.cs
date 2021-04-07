@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
 {
- 
-    public static int numScene = 2;
+    int numScene = SceneManager.GetActiveScene().buildIndex;
     //Any Collider2D component will call this function on
     //any attached scripts when the collider enters a collision with another collider.
     //The gameobject must also have a RigidBody2D attached.
@@ -33,13 +32,16 @@ public class SceneChange : MonoBehaviour
 
     public void Update()
     {
+        int numScene = SceneManager.GetActiveScene().buildIndex;
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            //Scene scene = SceneManager.GetSceneByBuildIndex(numScene);
             numScene++;
             SceneManager.LoadScene(numScene);
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            //Scene scene = SceneManager.GetSceneByBuildIndex(numScene);
             numScene--;
             SceneManager.LoadScene(numScene);
         }
@@ -51,9 +53,10 @@ public class SceneChange : MonoBehaviour
 
         if(collision.collider.tag == "Finish")
         {
-         
-            SceneManager.LoadScene(numScene);
+            int numScene = SceneManager.GetActiveScene().buildIndex;
             numScene++;
+            SceneManager.LoadScene(numScene);
+           
         }
 
 
